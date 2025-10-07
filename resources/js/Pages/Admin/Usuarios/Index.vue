@@ -1,19 +1,3 @@
-<script>
-const breadbrums = [
-    {
-        title: "Inicio",
-        disabled: false,
-        url: route("inicio"),
-        name_url: "inicio",
-    },
-    {
-        title: "Usuarios",
-        disabled: false,
-        url: "",
-        name_url: "",
-    },
-];
-</script>
 <script setup>
 import { useApp } from "@/composables/useApp";
 import { Head, Link, usePage } from "@inertiajs/vue3";
@@ -72,10 +56,6 @@ const columns = [
     {
         title: "TELÉFONO",
         data: "fono",
-    },
-    {
-        title: "TIPO",
-        data: "tipo",
     },
     {
         title: "ACCESO",
@@ -139,7 +119,7 @@ const accionesRow = () => {
         e.preventDefault();
         let id = $(this).attr("data-id");
         axios.get(route("usuarios.show", id)).then((response) => {
-            console.log(response.data)
+            console.log(response.data);
             setUsuario(response.data);
             accion_dialog.value = 1;
             open_dialog.value = true;
@@ -278,7 +258,6 @@ onBeforeUnmount(() => {
                             <tr>
                                 <th width="2%"></th>
                                 <th width="2%"></th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

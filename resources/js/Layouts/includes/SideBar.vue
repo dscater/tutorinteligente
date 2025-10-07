@@ -460,7 +460,7 @@ const logout = () => {
 </script>
 <template>
     <!-- BEGIN #sidebar -->
-    <div id="sidebar" class="app-sidebar bg-black">
+    <div id="sidebar" class="app-sidebar bg-sidebar">
         <!-- BEGIN scrollbar -->
         <div
             class="app-sidebar-content"

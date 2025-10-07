@@ -202,6 +202,7 @@ onMounted(() => {
 
 .login-container {
     background: var(--principal_t);
+    border: solid 1px var(--secundario);
     color: white;
     padding: 40px !important;
 }

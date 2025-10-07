@@ -9,13 +9,13 @@
     --principal_transparent: #001829bd;
     --secundario: #76d9fe;
     --secundario_hover: #53b2d4;
-    --fondo_app: #07090c;
+    --fondo_app: #11161d;
     --correcto: #d2e7c9;
     --transparente: #000000bd;
     --secundarion_transparente: #a14609d0;
     --progress: #4b5563;
     --bg_blue_dark: #00263fc9;
-    --bg-black2: #050116;
+    --bg-black2: #070413;
     --black_t: rgba(0, 0, 0, 0.014);
     --bg1: #0c0636;
     --bg1-t: #0c0636ad;
@@ -297,7 +297,11 @@ label,
     color: white;
 }
 
-.app-sidebar.bg-black {
+form label {
+    color: var(--principal);
+}
+
+.app-sidebar.bg-sidebar {
     background-color: var(--bg-black2);
 }
 
@@ -446,6 +450,7 @@ iframe {
 body #app #content .bg-primary {
     background-color: var(--principal) !important;
 }
+
 .btn.btn-theme:hover,
 .btn.btn-primary:hover {
     background-color: var(--principal_hover) !important;
