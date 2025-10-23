@@ -29,7 +29,7 @@ class UserUpdateRequest extends FormRequest
             "ci_exp" => "required",
             "dir" => "required|min:1",
             "fono" => "required|min:1",
-            "correo" => "nullable|email|unique:users,correo," . $this->id,
+            "correo" => "requried|email|unique:users,correo," . $this->id,
             "tipo" => "required",
             "foto" => "nullable|image|mimes:png,jpg,jpeg,webp|max:4096",
             "acceso" => "required",

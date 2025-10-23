@@ -34,10 +34,6 @@ const columns = [
         },
     },
     {
-        title: "USUARIO",
-        data: "usuario",
-    },
-    {
         title: "NOMBRE COMPLETO",
         data: "full_name",
     },
@@ -228,18 +224,6 @@ onBeforeUnmount(() => {
                         >
                             <i class="fa fa-plus"></i> Nuevo Usuario
                         </button>
-                        <a
-                            v-if="
-                                props_page.auth?.user.permisos == '*' ||
-                                props_page.auth?.user.permisos.includes(
-                                    'roles.index'
-                                )
-                            "
-                            :href="route('roles.index')"
-                            class="btn btn-info d-inline-block ml-1"
-                        >
-                            <i class="fa fa-list-alt"></i> Roles
-                        </a>
                     </h4>
                     <!-- <panel-toolbar
                         :mostrar_loading="loading"
@@ -258,7 +242,6 @@ onBeforeUnmount(() => {
                             <tr>
                                 <th width="2%"></th>
                                 <th width="2%"></th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

@@ -46,10 +46,6 @@ watch(
 
 const { flash } = usePage().props;
 
-const listTipos = ref([
-    { value: "ADMINISTRADOR", label: "ADMINISTRADOR" },
-    { value: "EMPLEADO", label: "EMPLEADO" },
-]);
 const listExpedido = [
     { value: "LP", label: "La Paz" },
     { value: "CB", label: "Cochabamba" },
@@ -70,8 +66,8 @@ function cargaArchivo(e, key) {
 
 const tituloDialog = computed(() => {
     return accion.value == 0
-        ? `<i class="fa fa-plus"></i> Nuevo Usuario`
-        : `<i class="fa fa-edit"></i> Editar Usuario`;
+        ? `<i class="fa fa-plus"></i> Nuevo Estudiante`
+        : `<i class="fa fa-edit"></i> Editar Estudiante`;
 });
 
 const initializeSwitcher = () => {
@@ -87,8 +83,8 @@ const initializeSwitcher = () => {
 const enviarFormulario = () => {
     let url =
         form["_method"] == "POST"
-            ? route("usuarios.store")
-            : route("usuarios.update", form.id);
+            ? route("estudiantes.store")
+            : route("estudiantes.update", form.id);
 
     form.post(url, {
         preserveScroll: true,

@@ -46,7 +46,7 @@ class UserService
     public function crear(array $datos): User
     {
         $user = User::create([
-            "usuario" => $this->getNombreUsuario($datos["nombre"], $datos["paterno"]),
+            "usuario" => $datos["correo"],
             "nombre" => mb_strtoupper($datos["nombre"]),
             "paterno" => mb_strtoupper($datos["paterno"]),
             "materno" => mb_strtoupper($datos["materno"]),
@@ -56,7 +56,7 @@ class UserService
             "fono" => $datos["fono"],
             "correo" => $datos["correo"],
             "password" => $datos["ci"],
-            "tipo" => $datos["tipo"],
+            "tipo" => "ADMINISTRADOR",
             "acceso" => $datos["acceso"],
             "fecha_registro" => date("Y-m-d")
         ]);
@@ -92,7 +92,6 @@ class UserService
             "ci_exp" => $datos["ci_exp"],
             "fono" => $datos["fono"],
             "correo" => $datos["correo"],
-            "tipo" => $datos["tipo"],
             "acceso" => $datos["acceso"],
             "fecha_registro" => date("Y-m-d")
         ]);
@@ -154,7 +153,7 @@ class UserService
         $user->save();
 
         // registrar accion
-        $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ AL USUARIO " . $old_user->usuario, $old_user, $user);
+        $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ AL USUARIO " . $user->correo, $old_user, $user);
         return true;
     }
 }

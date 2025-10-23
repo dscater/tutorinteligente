@@ -28,6 +28,7 @@ class PermisoService
             "estudiantes.show",
             "estudiantes.update",
             "estudiantes.destroy",
+            "estudiantes.password",
 
             "conceptos.api",
             "conceptos.listado",
@@ -90,7 +91,7 @@ class PermisoService
             "reportes.estudiantes",
             "reportes.r_estudiantes",
         ],
-        "EMPLEADO" => [],
+        "ESTUDIANTE" => [],
     ];
 
     public function getPermisosUser()

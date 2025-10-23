@@ -29,11 +29,6 @@ class UsuarioController extends Controller
         return Inertia::render("Admin/Usuarios/Index");
     }
 
-    public function clientes(): InertiaResponse
-    {
-        return Inertia::render("Admin/Usuarios/Clientes");
-    }
-
     public function listado(Request $request): JsonResponse
     {
         $usuarios = User::where("id", "!=", 1);
@@ -92,7 +87,7 @@ class UsuarioController extends Controller
             }
         }
 
-        $usuarios = $usuarios->where("status", 1)->paginate($length, ['*'], 'page', $page);
+        $usuarios = $usuarios->where("tipo", "!=", "ESTUDIANTE")->where("status", 1)->paginate($length, ['*'], 'page', $page);
 
         // Numeración
         $usuarios->getCollection()->transform(function ($usuario, $index) use ($usuarios) {
@@ -120,7 +115,7 @@ class UsuarioController extends Controller
             $usuarios->orWhere("ci", "LIKE", "%$search%");
         }
 
-        $usuarios = $usuarios->where("status", 1)->paginate($request->itemsPerPage);
+        $usuarios = $usuarios->where("tipo", "!=", "ESTUDIANTE")->where("status", 1)->paginate($request->itemsPerPage);
         return response()->JSON([
             'data' => $usuarios->items(),
             'recordsTotal' => $usuarios->total(),

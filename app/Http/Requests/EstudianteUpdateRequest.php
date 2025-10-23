@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserStoreRequest extends FormRequest
+class EstudianteUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class UserStoreRequest extends FormRequest
             "nombre" => "required|min:2",
             "paterno" => "required|min:1",
             "materno" => "nullable|min:1",
-            "ci" => "required|numeric|digits_between:6,10|unique:users,ci",
+            "ci" => "required|numeric|digits_between:6,10|unique:users,ci," . $this->id,
             "ci_exp" => "required",
             "dir" => "required|min:1",
             "fono" => "required|min:1",
-            "correo" => "required|email|unique:users,correo",
+            "correo" => "required|email|unique:users,correo," . $this->id,
             "tipo" => "required",
             "foto" => "nullable|image|mimes:png,jpg,jpeg,webp|max:4096",
             "acceso" => "required",

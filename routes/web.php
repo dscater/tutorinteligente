@@ -77,6 +77,7 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     );
 
     // ESTUDIANTES
+    Route::put("estudiantes/password/{user}", [EstudianteController::class, 'actualizaPassword'])->name("estudiantes.password");
     Route::get("estudiantes/api", [EstudianteController::class, 'api'])->name("estudiantes.api");
     Route::get("estudiantes/paginado", [EstudianteController::class, 'paginado'])->name("estudiantes.paginado");
     Route::get("estudiantes/listado", [EstudianteController::class, 'listado'])->name("estudiantes.listado");
