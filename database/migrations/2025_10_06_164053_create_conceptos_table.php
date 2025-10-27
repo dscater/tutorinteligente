@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("seccion", 200);
             $table->string("titulo", 255);
             $table->text("descripcion");
-            $table->text("url");
+            $table->text("url")->nullable();
             $table->date("fecha_registro");
             $table->timestamps();
         });

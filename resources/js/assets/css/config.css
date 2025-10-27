@@ -283,7 +283,7 @@ html {
     top: 0px;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
@@ -295,7 +295,7 @@ label,
 .app-sidebar.bg-dark .menu-item .menu-link,
 .app-sidebar.bg-dark .menu-item .menu-submenu .menu-item .menu-text {
     color: white;
-}
+} */
 
 form label {
     color: var(--principal);

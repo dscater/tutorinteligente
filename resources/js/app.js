@@ -28,9 +28,12 @@ import "./assets/css/form.css";
 // import "./assets/css/fullCalendarConfig.css";
 
 // ELEMENT-UI
-import ElementPlus from 'element-plus';
-import 'element-plus/dist/index.css';
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 
+// VueQuill
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 // Default Layout
 import App from "@/Layouts/App.vue";
@@ -56,6 +59,7 @@ createInertiaApp({
             .use(pinia)
             .use(ElementPlus)
             .component("multiselect", Multiselect)
+            .component("QuillEditor", QuillEditor)
             .mount(el);
     },
     progress: {

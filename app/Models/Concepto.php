@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Concepto extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "seccion",
+        "titulo",
+        "descripcion",
+        "url",
+        "fecha_registro",
+    ];
+
+    protected $appends = ["fecha_registro_t"];
+
+    public function getFechaRegistroTAttribute()
+    {
+        return date("d/m/Y", strtotime($this->fecha_registro));
+    }
 }
