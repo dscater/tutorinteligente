@@ -79,7 +79,7 @@ class CuestionarioService
         $cuestionario->delete();
 
         // registrar accion
-        $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ EL CUESTIONARIO " . $cuestionario->full_name, $old_cuestionario, $cuestionario);
+        $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ UN CUESTIONARIO", $old_cuestionario, $cuestionario);
         return true;
     }
 }

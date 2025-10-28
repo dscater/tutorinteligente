@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SeccionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->JSON(self::listSecciones());
+        $exep = [];
+        if (isset($request->exep) && is_array($request->exep)) {
+            $exep = $request->exep;
+        }
+        return response()->JSON(self::listSecciones($exep));
     }
 
-    public static function listSecciones()
+    public static function listSecciones($exep = [])
     {
         $secciones = [
             [
@@ -47,6 +52,13 @@ class SeccionController extends Controller
                 "label" => "RELACIÓN ENTRE CLASES",
             ]
         ];
+
+        if (count($exep) > 0) {
+            foreach ($exep as $key) {
+                unset($secciones[$key]);
+            }
+        }
+
 
         return $secciones;
     }

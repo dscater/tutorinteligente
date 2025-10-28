@@ -6,6 +6,9 @@ use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\CuestionarioController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\NivelController;
+use App\Http\Controllers\PracticaController;
+use App\Http\Controllers\PracticaEstudianteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\SeccionController;
@@ -46,6 +49,7 @@ Route::get('/registro', function () {
 Route::get("configuracions/getConfiguracion", [ConfiguracionController::class, 'getConfiguracion'])->name("configuracions.getConfiguracion");
 
 Route::get("secciones", [SeccionController::class, 'index'])->name("secciones.index");
+Route::get("nivels", [NivelController::class, 'index'])->name("nivels.index");
 
 // ADMINISTRACION
 Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function () {
@@ -102,6 +106,19 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     Route::resource("cuestionarios", CuestionarioController::class)->only(
         ["index", "store", "edit", "show", "update", "destroy"]
     );
+
+    // PRACTICAS
+    Route::get("practicas/api", [PracticaController::class, 'api'])->name("practicas.api");
+    Route::get("practicas/paginado", [PracticaController::class, 'paginado'])->name("practicas.paginado");
+    Route::get("practicas/listado", [PracticaController::class, 'listado'])->name("practicas.listado");
+    Route::resource("practicas", PracticaController::class)->only(
+        ["index", "store", "edit", "show", "update", "destroy"]
+    );
+
+    // PRACTICAS-ESTUDIANTES
+    Route::get("practica_estudiantes", [PracticaEstudianteController::class, 'index'])->name("practica_estudiantes.index");
+    Route::get("practica_estudiantes/obtenerPracticaEstudiante/{practica}", [PracticaEstudianteController::class, 'obtenerPracticaEstudiante'])->name("practica_estudiantes.getPractica");
+    Route::post("practica_estudiantes", [PracticaEstudianteController::class, 'store'])->name("practica_estudiantes.store");
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");

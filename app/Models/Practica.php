@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Practica extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "nivel",
+        "seccion",
+        "descripcion",
+        "codigo",
+        "lineas",
+    ];
 }

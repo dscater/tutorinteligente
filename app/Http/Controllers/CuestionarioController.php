@@ -50,8 +50,7 @@ class CuestionarioController extends Controller
         $cuestionarios = Cuestionario::select("cuestionarios.*");
         if ($search && trim($search) != '') {
             $cuestionarios->orWhereRaw("cuestionarios.seccion LIKE ?", ["%$search%"]);
-            $cuestionarios->orWhereRaw("cuestionarios.titulo LIKE ?", ["%$search%"]);
-            $cuestionarios->orWhereRaw("cuestionarios.url LIKE ?", ["%$search%"]);
+            $cuestionarios->orWhereRaw("cuestionarios.pregunta LIKE ?", ["%$search%"]);
         }
 
         // order

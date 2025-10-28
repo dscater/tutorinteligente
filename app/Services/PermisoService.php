@@ -91,7 +91,14 @@ class PermisoService
             "reportes.estudiantes",
             "reportes.r_estudiantes",
         ],
-        "ESTUDIANTE" => [],
+        "ESTUDIANTE" => [
+            "practicas.listado",
+
+            "practica_estudiantes.index",
+            "practica_estudiantes.getPractica",
+            "practica_estudiantes.store",
+
+        ],
     ];
 
     public function getPermisosUser()

@@ -73,7 +73,7 @@ class ConceptoService
         $concepto->delete();
 
         // registrar accion
-        $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ EL CONCEPTO " . $concepto->full_name, $old_concepto, $concepto);
+        $this->historialAccionService->registrarAccion($this->modulo, "ELIMINACIÓN", "ELIMINÓ UN CONCEPTO", $old_concepto, $concepto);
         return true;
     }
 }

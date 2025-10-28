@@ -28,6 +28,13 @@
     --bg6: #348fe2;
 }
 
+.bg-linea-correcto {
+    background-color: #063f19;
+}
+.bg-linea-error {
+    background-color: #660b13;
+}
+
 .img_qr_pago {
     width: 100%;
     max-width: 200px;
