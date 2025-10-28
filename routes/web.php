@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ConceptoController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\CuestionarioController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ProfileController;
@@ -91,6 +92,14 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     Route::get("conceptos/paginado", [ConceptoController::class, 'paginado'])->name("conceptos.paginado");
     Route::get("conceptos/listado", [ConceptoController::class, 'listado'])->name("conceptos.listado");
     Route::resource("conceptos", ConceptoController::class)->only(
+        ["index", "store", "edit", "show", "update", "destroy"]
+    );
+
+    // CUESTIONARIOS
+    Route::get("cuestionarios/api", [CuestionarioController::class, 'api'])->name("cuestionarios.api");
+    Route::get("cuestionarios/paginado", [CuestionarioController::class, 'paginado'])->name("cuestionarios.paginado");
+    Route::get("cuestionarios/listado", [CuestionarioController::class, 'listado'])->name("cuestionarios.listado");
+    Route::resource("cuestionarios", CuestionarioController::class)->only(
         ["index", "store", "edit", "show", "update", "destroy"]
     );
 

@@ -1,12 +1,12 @@
 <script setup>
 import { useApp } from "@/composables/useApp";
 import { Head, Link, usePage } from "@inertiajs/vue3";
-import { useConceptos } from "@/composables/conceptos/useConceptos";
+import { useCuestionarios } from "@/composables/cuestionarios/useCuestionarios";
 import { initDataTable } from "@/composables/datatable.js";
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useAxios } from "@/composables/axios/useAxios";
 import PanelToolbar from "@/Components/PanelToolbar.vue";
 // import { useMenu } from "@/composables/useMenu";
-import { useAxios } from "@/composables/axios/useAxios";
 import Formulario from "./Formulario.vue";
 // const { mobile, identificaDispositivo } = useMenu();
 const { props: props_page } = usePage();
@@ -17,9 +17,8 @@ onMounted(() => {
     }, 300);
 });
 
-const { setConcepto, limpiarConcepto } = useConceptos();
+const { setCuestionario, limpiarCuestionario } = useCuestionarios();
 const { axiosDelete } = useAxios();
-
 const columns = [
     {
         title: "",
@@ -30,16 +29,28 @@ const columns = [
         data: "seccion",
     },
     {
-        title: "TÍTULO",
-        data: "titulo",
+        title: "PREGUNTA",
+        data: "pregunta",
     },
     {
-        title: "URL",
-        data: "url",
-        sortable: false,
-        render: function (data, type, row) {
-            return `<a href="${row.url}" target="_blank">Video URL</a>`;
-        },
+        title: "R1",
+        data: "resp1",
+    },
+    {
+        title: "R2",
+        data: "resp2",
+    },
+    {
+        title: "R3",
+        data: "resp3",
+    },
+    {
+        title: "R4",
+        data: "resp4",
+    },
+    {
+        title: "CORRECTO",
+        data: "correcta",
     },
     {
         title: "ACCIONES",
@@ -50,20 +61,20 @@ const columns = [
 
             if (
                 props_page.auth?.user.permisos == "*" ||
-                props_page.auth?.user.permisos.includes("conceptos.edit")
+                props_page.auth?.user.permisos.includes("cuestionarios.edit")
             ) {
                 buttons += `<button class="mx-0 rounded-0 btn btn-warning editar" data-id="${row.id}"><i class="fa fa-edit"></i></button> `;
             }
 
             if (
                 props_page.auth?.user.permisos == "*" ||
-                props_page.auth?.user.permisos.includes("conceptos.destroy")
+                props_page.auth?.user.permisos.includes("cuestionarios.destroy")
             ) {
                 buttons += `<button class="mx-0 rounded-0 btn btn-danger eliminar"
                  data-id="${row.id}"
-                 data-nombre="${row.seccion}|${row.titulo}"
+                 data-nombre="${row.seccion}|${row.pregunta}"
                  data-url="${route(
-                     "conceptos.destroy",
+                     "cuestionarios.destroy",
                      row.id
                  )}"><i class="fa fa-trash"></i></button>`;
             }
@@ -77,25 +88,25 @@ const accion_dialog = ref(0);
 const open_dialog = ref(false);
 
 const agregarRegistro = () => {
-    limpiarConcepto();
+    limpiarCuestionario();
     accion_dialog.value = 0;
     open_dialog.value = true;
 };
 
 const accionesRow = () => {
     // editar
-    $("#table-concepto").on("click", "button.editar", function (e) {
+    $("#table-cuestionario").on("click", "button.editar", function (e) {
         e.preventDefault();
         let id = $(this).attr("data-id");
-        axios.get(route("conceptos.show", id)).then((response) => {
+        axios.get(route("cuestionarios.show", id)).then((response) => {
             console.log(response.data);
-            setConcepto(response.data);
+            setCuestionario(response.data);
             accion_dialog.value = 1;
             open_dialog.value = true;
         });
     });
     // eliminar
-    $("#table-concepto").on("click", "button.eliminar", function (e) {
+    $("#table-cuestionario").on("click", "button.eliminar", function (e) {
         e.preventDefault();
         let nombre = $(this).attr("data-nombre");
         let id = $(this).attr("data-id");
@@ -111,7 +122,7 @@ const accionesRow = () => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 let respuesta = await axiosDelete(
-                    route("conceptos.destroy", id)
+                    route("cuestionarios.destroy", id)
                 );
                 if (respuesta && respuesta.sw) {
                     updateDatatable();
@@ -132,9 +143,9 @@ const updateDatatable = () => {
 
 onMounted(async () => {
     datatable = initDataTable(
-        "#table-concepto",
+        "#table-cuestionario",
         columns,
-        route("conceptos.api")
+        route("cuestionarios.api")
     );
     input_search = document.querySelector('input[type="search"]');
 
@@ -161,16 +172,16 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
-    <Head title="Conceptos"></Head>
+    <Head title="Cuestionarios"></Head>
 
     <!-- BEGIN breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:;">Inicio</a></li>
-        <li class="breadcrumb-item active">Conceptos</li>
+        <li class="breadcrumb-item active">Cuestionarios</li>
     </ol>
     <!-- END breadcrumb -->
     <!-- BEGIN page-header -->
-    <h1 class="page-header">Conceptos</h1>
+    <h1 class="page-header">Cuestionarios</h1>
     <!-- END page-header -->
 
     <div class="row">
@@ -184,14 +195,14 @@ onBeforeUnmount(() => {
                             v-if="
                                 props_page.auth?.user.permisos == '*' ||
                                 props_page.auth?.user.permisos.includes(
-                                    'conceptos.create'
+                                    'cuestionarios.create'
                                 )
                             "
                             type="button"
                             class="btn btn-primary"
                             @click="agregarRegistro"
                         >
-                            <i class="fa fa-plus"></i> Nuevo Concepto
+                            <i class="fa fa-plus"></i> Nuevo Cuestionario
                         </button>
                     </h4>
                     <!-- <panel-toolbar
@@ -203,13 +214,17 @@ onBeforeUnmount(() => {
                 <!-- BEGIN panel-body -->
                 <div class="panel-body">
                     <table
-                        id="table-concepto"
+                        id="table-cuestionario"
                         width="100%"
                         class="table table-striped table-bordered align-middle text-nowrap tabla_datos"
                     >
                         <thead>
                             <tr>
                                 <th width="2%"></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

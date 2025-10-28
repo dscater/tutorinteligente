@@ -596,16 +596,19 @@ const logout = () => {
                 <div
                     v-if="
                         user_logeado.permisos == '*' ||
-                        user_logeado.permisos.includes('estudiantes.index')
+                        user_logeado.permisos.includes('cuestionarios.index')
                     "
                     class="menu-item"
                     :class="[
-                        route_current == 'estudiantes.index'
+                        route_current == 'cuestionarios.index'
                             ? 'active'
                             : 'none',
                     ]"
                 >
-                    <Link :href="route('estudiantes.index')" class="menu-link">
+                    <Link
+                        :href="route('cuestionarios.index')"
+                        class="menu-link"
+                    >
                         <div class="menu-icon">
                             <i class="fa fa-list"></i>
                         </div>
