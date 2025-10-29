@@ -618,6 +618,30 @@ const logout = () => {
                 <div
                     v-if="
                         user_logeado.permisos == '*' ||
+                        user_logeado.permisos.includes(
+                            'cuestionario_estudiantes.index'
+                        )
+                    "
+                    class="menu-item"
+                    :class="[
+                        route_current == 'cuestionario_estudiantes.index'
+                            ? 'active'
+                            : 'none',
+                    ]"
+                >
+                    <Link
+                        :href="route('cuestionario_estudiantes.index')"
+                        class="menu-link"
+                    >
+                        <div class="menu-icon">
+                            <i class="fa fa-list"></i>
+                        </div>
+                        <div class="menu-text">Cuestionarios</div>
+                    </Link>
+                </div>
+                <div
+                    v-if="
+                        user_logeado.permisos == '*' ||
                         user_logeado.permisos.includes('cuestionarios.index')
                     "
                     class="menu-item"

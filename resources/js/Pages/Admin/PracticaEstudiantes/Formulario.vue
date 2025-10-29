@@ -111,8 +111,9 @@ const cargarMonaco = async () => {
         const lineasCorrectos = codigoCorrecto.value.split("\n");
         let count = 0;
         lineasUsuario.forEach((linea, i) => {
-            const esperado = (lineasCorrectos?.[i] || "").trim();
-            if (linea.trim() === esperado && esperado !== "") count++;
+            const actual = normalizarLinea(linea);
+            const esperado = normalizarLinea(lineasCorrectos?.[i] || "");
+            if (actual === esperado && esperado !== "") count++;
         });
         correctas.value = count;
         // Resaltar visualmente las líneas correctas o incorrectas
@@ -133,8 +134,9 @@ const cargarMonaco = async () => {
         const lineasCorrectos = codigoCorrecto.value.split("\n");
         let count = 0;
         lineasUsuario.forEach((linea, i) => {
-            const esperado = (lineasCorrectos?.[i] || "").trim();
-            if (linea.trim() === esperado && esperado !== "") count++;
+            const actual = normalizarLinea(linea);
+            const esperado = normalizarLinea(lineasCorrectos?.[i] || "");
+            if (actual === esperado && esperado !== "") count++;
         });
         correctas.value = count;
         // Resaltar visualmente las líneas correctas o incorrectas
@@ -146,15 +148,27 @@ const cargarMonaco = async () => {
     });
 };
 
+function normalizarLinea(linea) {
+    const normalizado = linea
+        .trim() // quitar espacios al inicio y final
+        // reemplaza múltiples espacios por uno solo, excepto entre palabras
+        .replace(/\s+/g, " ")
+        // quitar espacios alrededor de operadores y signos (excepto palabras)
+        .replace(/\s*([=+\-*/%<>!&|^?:;,(){}[\]])\s*/g, "$1");
+    // console.log(normalizado);
+
+    return normalizado;
+}
+
 let currentDecorations = [];
 const resaltarLineas = (lineasUsuario) => {
     const decorations = [];
     const lineasCorrectos = codigoCorrecto.value.split("\n");
 
     lineasUsuario.forEach((linea, i) => {
-        const esperado = (lineasCorrectos[i] || "").trim();
-        const esCorrecta = linea.trim() === esperado && esperado !== "";
-
+        const actual = normalizarLinea(linea);
+        const esperado = normalizarLinea(lineasCorrectos?.[i] || "");
+        const esCorrecta = actual === esperado && esperado !== "";
         decorations.push({
             range: new monaco.Range(i + 1, 1, i + 1, 1),
             options: {

@@ -39,6 +39,7 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user() ? $request->user() : null,
+                'puntuacion' => $request->user()->tipo == 'ESTUDIANTE' ? $request->user()->puntuacion : null,
             ],
             'url_assets' => asset(''),
             'url_principal' => url(''),

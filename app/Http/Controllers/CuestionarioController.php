@@ -28,13 +28,18 @@ class CuestionarioController extends Controller
 
     public function listado(Request $request): JsonResponse
     {
-        $cuestionarios = Cuestionario::where("id", "!=", 1);
+        $cuestionarios = Cuestionario::select("cuestionarios.*");
 
-        if (isset($request->tipo) && $request->tipo) {
-            $cuestionarios->where("tipo", $request->tipo);
+        if (isset($request->seccion) && $request->seccion) {
+            $cuestionarios->where("seccion", $request->seccion);
         }
 
-        $cuestionarios = $cuestionarios->where("status", 1)->get();
+        if (isset($request->random)) {
+            // Aleatoriza el orden
+            $cuestionarios = $cuestionarios->inRandomOrder()->get();
+        } else {
+            $cuestionarios = $cuestionarios->get();
+        }
         return response()->JSON([
             "cuestionarios" => $cuestionarios
         ]);
@@ -84,7 +89,7 @@ class CuestionarioController extends Controller
     public function paginado(Request $request)
     {
         $search = $request->search;
-        $cuestionarios = Cuestionario::where("id", "!=", 1);
+        $cuestionarios = Cuestionario::select("cuestionarios.*");
 
         if (trim($search) != "") {
             $cuestionarios->where("nombre", "LIKE", "%$search%");
@@ -93,7 +98,7 @@ class CuestionarioController extends Controller
             $cuestionarios->orWhere("ci", "LIKE", "%$search%");
         }
 
-        $cuestionarios = $cuestionarios->WHERE("tipo", "ESTUDIANTE")->where("status", 1)->paginate($request->itemsPerPage);
+        $cuestionarios = $cuestionarios->WHERE("tipo", "ESTUDIANTE")->paginate($request->itemsPerPage);
         return response()->JSON([
             'data' => $cuestionarios->items(),
             'recordsTotal' => $cuestionarios->total(),

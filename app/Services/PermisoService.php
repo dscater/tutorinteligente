@@ -98,6 +98,12 @@ class PermisoService
             "practica_estudiantes.getPractica",
             "practica_estudiantes.store",
 
+            "cuestionarios.listado",
+
+            "cuestionario_estudiantes.index",
+            "cuestionario_estudiantes.store",
+            "cuestionario_estudiantes.getPuntuacion",
+
         ],
     ];
 

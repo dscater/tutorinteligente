@@ -115,6 +115,16 @@ class User extends Authenticatable
 
     // RELACIONES
 
+    public function puntuacion()
+    {
+        return $this->hasOne(Puntuacion::class, 'user_id');
+    }
+
+    public function user_practicas()
+    {
+        return $this->hasMany(UserPractica::class, 'user_id');
+    }
+
     // FUNCIONES
     public static function getNombreUsuario($nom, $apep)
     {

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ConceptoController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\CuestionarioController;
+use App\Http\Controllers\CuestionarioEstudianteController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\NivelController;
@@ -119,6 +120,11 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     Route::get("practica_estudiantes", [PracticaEstudianteController::class, 'index'])->name("practica_estudiantes.index");
     Route::get("practica_estudiantes/obtenerPracticaEstudiante/{practica}", [PracticaEstudianteController::class, 'obtenerPracticaEstudiante'])->name("practica_estudiantes.getPractica");
     Route::post("practica_estudiantes", [PracticaEstudianteController::class, 'store'])->name("practica_estudiantes.store");
+
+    // CUESTIONARIOS-ESTUDIANTES
+    Route::get("cuestionario_estudiantes", [CuestionarioEstudianteController::class, 'index'])->name("cuestionario_estudiantes.index");
+    Route::get("cuestionario_estudiantes/getPuntuacion/{user}", [CuestionarioEstudianteController::class, 'getPuntuacion'])->name("cuestionario_estudiantes.getPuntuacion");
+    Route::post("cuestionario_estudiantes", [CuestionarioEstudianteController::class, 'store'])->name("cuestionario_estudiantes.store");
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");

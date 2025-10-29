@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 28-10-2025 a las 13:18:18
+-- Tiempo de generación: 29-10-2025 a las 15:46:11
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -93,7 +93,11 @@ CREATE TABLE `cuestionarios` (
 
 INSERT INTO `cuestionarios` (`id`, `seccion`, `pregunta`, `resp1`, `resp2`, `resp3`, `resp4`, `correcta`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'INTRODUCCIÓN', 'PREGUNTA 1', 'RESP 1', 'RESP 2', 'RESP 3', 'RESP 4', 3, '2025-10-28', '2025-10-28 13:17:50', '2025-10-28 13:17:50'),
-(2, 'INTRODUCCIÓN', 'PREGUNTA 2', 'R 1', 'R2', 'R3', 'R4', 1, '2025-10-28', '2025-10-28 13:18:04', '2025-10-28 13:18:04');
+(2, 'INTRODUCCIÓN', 'PREGUNTA 2', 'R 1', 'R2', 'R3', 'R4', 1, '2025-10-28', '2025-10-28 13:18:04', '2025-10-28 13:18:04'),
+(3, 'ABSTRACCIÓN', 'PREGUNTA ABSTRACCION 1', 'REPS 1', 'RESP 2', 'RESP 3', 'RESP 4', 1, '2025-10-28', '2025-10-28 19:18:31', '2025-10-28 19:18:31'),
+(4, 'INTRODUCCIÓN', 'PREGUNTA 3', 'RESP 1', 'RESP 2', 'RESP 3', 'RESP 4', 4, '2025-10-29', '2025-10-29 14:55:57', '2025-10-29 14:55:57'),
+(5, 'INTRODUCCIÓN', 'PREGUNTA 4', 'RESP 1', 'RESP 2', 'RESP 3', 'RESP 4', 3, '2025-10-29', '2025-10-29 14:56:10', '2025-10-29 14:56:10'),
+(6, 'INTRODUCCIÓN', 'PREGUNTA 5', 'RESP 1', 'RESP 2', 'RESP 3', 'R4', 1, '2025-10-29', '2025-10-29 14:56:20', '2025-10-29 14:56:20');
 
 -- --------------------------------------------------------
 
@@ -130,7 +134,12 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (8, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 1, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"RESP 4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"3\", \"pregunta\": \"PREGUNTA 1\", \"created_at\": \"2025-10-28T13:13:49.000000Z\", \"updated_at\": \"2025-10-28T13:13:49.000000Z\", \"fecha_registro\": \"2025-10-28\"}', NULL, 'CUESTIONARIOS', '2025-10-28', '09:13:49', '2025-10-28 13:13:49', '2025-10-28 13:13:49'),
 (9, 1, 'MODIFICACIÓN', 'EL USUARIO admin ACTUALIZÓ UN CUESTIONARIO', '{\"id\": 1, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"RESP 4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": 3, \"pregunta\": \"PREGUNTA 1\", \"created_at\": \"2025-10-28T13:13:49.000000Z\", \"updated_at\": \"2025-10-28T13:13:49.000000Z\", \"fecha_registro\": \"2025-10-28\"}', '{\"id\": 1, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"RESP 4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"2\", \"pregunta\": \"PREGUNTA 1\", \"created_at\": \"2025-10-28T13:13:49.000000Z\", \"updated_at\": \"2025-10-28T13:14:09.000000Z\", \"fecha_registro\": \"2025-10-28\"}', 'CUESTIONARIOS', '2025-10-28', '09:14:09', '2025-10-28 13:14:09', '2025-10-28 13:14:09'),
 (10, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 1, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"RESP 4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"3\", \"pregunta\": \"PREGUNTA 1\", \"created_at\": \"2025-10-28T13:17:50.000000Z\", \"updated_at\": \"2025-10-28T13:17:50.000000Z\", \"fecha_registro\": \"2025-10-28\"}', NULL, 'CUESTIONARIOS', '2025-10-28', '09:17:50', '2025-10-28 13:17:50', '2025-10-28 13:17:50'),
-(11, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 2, \"resp1\": \"R 1\", \"resp2\": \"R2\", \"resp3\": \"R3\", \"resp4\": \"R4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"1\", \"pregunta\": \"PREGUNTA 2\", \"created_at\": \"2025-10-28T13:18:04.000000Z\", \"updated_at\": \"2025-10-28T13:18:04.000000Z\", \"fecha_registro\": \"2025-10-28\"}', NULL, 'CUESTIONARIOS', '2025-10-28', '09:18:04', '2025-10-28 13:18:04', '2025-10-28 13:18:04');
+(11, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 2, \"resp1\": \"R 1\", \"resp2\": \"R2\", \"resp3\": \"R3\", \"resp4\": \"R4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"1\", \"pregunta\": \"PREGUNTA 2\", \"created_at\": \"2025-10-28T13:18:04.000000Z\", \"updated_at\": \"2025-10-28T13:18:04.000000Z\", \"fecha_registro\": \"2025-10-28\"}', NULL, 'CUESTIONARIOS', '2025-10-28', '09:18:04', '2025-10-28 13:18:04', '2025-10-28 13:18:04'),
+(12, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 3, \"resp1\": \"REPS 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"RESP 4\", \"seccion\": \"ABSTRACCIÓN\", \"correcta\": \"1\", \"pregunta\": \"PREGUNTA ABSTRACCION 1\", \"created_at\": \"2025-10-28T19:18:31.000000Z\", \"updated_at\": \"2025-10-28T19:18:31.000000Z\", \"fecha_registro\": \"2025-10-28\"}', NULL, 'CUESTIONARIOS', '2025-10-28', '15:18:31', '2025-10-28 19:18:31', '2025-10-28 19:18:31'),
+(13, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UNA PRÁCTICA', '{\"id\": 1, \"nivel\": \"BÁSICO\", \"codigo\": \"class{\\r\\n    i=0;\\r\\n}\", \"lineas\": \"3\", \"seccion\": \"ABSTRACCIÓN\", \"created_at\": \"2025-10-28T19:50:35.000000Z\", \"updated_at\": \"2025-10-28T19:50:35.000000Z\", \"descripcion\": \"DESCRIPCION PRACTICA\"}', NULL, 'PRÁCTICAS', '2025-10-28', '15:50:35', '2025-10-28 19:50:35', '2025-10-28 19:50:35'),
+(14, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 4, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"RESP 4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"4\", \"pregunta\": \"PREGUNTA 3\", \"created_at\": \"2025-10-29T14:55:57.000000Z\", \"updated_at\": \"2025-10-29T14:55:57.000000Z\", \"fecha_registro\": \"2025-10-29\"}', NULL, 'CUESTIONARIOS', '2025-10-29', '10:55:57', '2025-10-29 14:55:57', '2025-10-29 14:55:57'),
+(15, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 5, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"RESP 4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"3\", \"pregunta\": \"PREGUNTA 4\", \"created_at\": \"2025-10-29T14:56:10.000000Z\", \"updated_at\": \"2025-10-29T14:56:10.000000Z\", \"fecha_registro\": \"2025-10-29\"}', NULL, 'CUESTIONARIOS', '2025-10-29', '10:56:10', '2025-10-29 14:56:10', '2025-10-29 14:56:10'),
+(16, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 6, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"R4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"1\", \"pregunta\": \"PREGUNTA 5\", \"created_at\": \"2025-10-29T14:56:20.000000Z\", \"updated_at\": \"2025-10-29T14:56:20.000000Z\", \"fecha_registro\": \"2025-10-29\"}', NULL, 'CUESTIONARIOS', '2025-10-29', '10:56:20', '2025-10-29 14:56:20', '2025-10-29 14:56:20');
 
 -- --------------------------------------------------------
 
@@ -156,7 +165,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2025_10_06_164154_create_cuestionarios_table', 1),
 (6, '2025_10_06_164312_create_puntuacions_table', 1),
 (7, '2025_10_06_164342_create_practicas_table', 1),
-(8, '2025_10_06_164420_create_progresos_table', 1);
+(8, '2025_10_06_164420_create_progresos_table', 1),
+(9, '2025_10_28_162351_create_user_practicas_table', 2);
 
 -- --------------------------------------------------------
 
@@ -174,6 +184,14 @@ CREATE TABLE `practicas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `practicas`
+--
+
+INSERT INTO `practicas` (`id`, `nivel`, `seccion`, `descripcion`, `codigo`, `lineas`, `created_at`, `updated_at`) VALUES
+(1, 'BÁSICO', 'ABSTRACCIÓN', 'DESCRIPCION PRACTICA', 'class{\n    int i=0;\n}', 3, '2025-10-28 19:50:35', '2025-10-28 19:50:35'),
+(3, 'BÁSICO', 'ABSTRACCIÓN', 'DESCRIPCION PRACTICA', 'class{\n    int i=0;\n    int b=1;\n    int c=1;\n}', 3, '2025-10-28 19:50:35', '2025-10-28 19:50:35');
 
 -- --------------------------------------------------------
 
@@ -204,6 +222,13 @@ CREATE TABLE `puntuacions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `puntuacions`
+--
+
+INSERT INTO `puntuacions` (`id`, `user_id`, `puntuacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 3, 440, '2025-10-29', '2025-10-29 15:29:02', '2025-10-29 15:44:58');
 
 -- --------------------------------------------------------
 
@@ -240,6 +265,30 @@ INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_
 (1, 'admin', 'admin', 'admin', '', '0', '', '', '', '', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 1, 'ADMINISTRADOR', NULL, '2025-10-06', 1, '2025-10-06 21:07:41', '2025-10-06 21:07:41'),
 (2, 'juan@gmail.com', 'JUAN', 'PERES', 'MAMANI', '123456', 'LP', 'LOS OLIVOS', 'juan@gmail.com', '6755675675', '$2y$12$or9sW4UJnFkhkPPpwrkNhO1ZH5EH3I.05wEbcvmq3hG1PJcJKccdS', 1, 'ADMINISTRADOR', '21761225258.jpg', '2025-10-23', 1, '2025-10-23 13:14:18', '2025-10-23 13:17:29'),
 (3, 'eduardo@gmail.com', 'EDUARDO', 'GONZALES', '', '1231231', 'LP', 'LOS OLIVOS #2', 'eduardo@gmail.com', '62323232', '$2y$12$jngjS3R.0KCgTHbsbN6czOvPtTy7twcp1COWmNNxKo6kZ/owKLAPe', 1, 'ESTUDIANTE', '31761226146.jpg', '2025-10-23', 1, '2025-10-23 13:29:06', '2025-10-23 13:35:51');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user_practicas`
+--
+
+CREATE TABLE `user_practicas` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `practica_id` bigint UNSIGNED NOT NULL,
+  `codigo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correcto` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `user_practicas`
+--
+
+INSERT INTO `user_practicas` (`id`, `user_id`, `practica_id`, `codigo`, `correcto`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 'class{\r\n    int i = 0;\r\n}', 1, '2025-10-28 21:05:43', '2025-10-29 14:28:47'),
+(3, 3, 3, 'class{\r\n    int i=0;\r\n    int b=1;\r\n    int c = 1;\r\n}', 1, '2025-10-28 21:25:04', '2025-10-29 14:29:00');
 
 --
 -- Índices para tablas volcadas
@@ -302,6 +351,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `user_practicas`
+--
+ALTER TABLE `user_practicas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -321,25 +376,25 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `cuestionarios`
 --
 ALTER TABLE `cuestionarios`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `practicas`
 --
 ALTER TABLE `practicas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `progresos`
@@ -351,12 +406,18 @@ ALTER TABLE `progresos`
 -- AUTO_INCREMENT de la tabla `puntuacions`
 --
 ALTER TABLE `puntuacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `user_practicas`
+--
+ALTER TABLE `user_practicas`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
