@@ -114,10 +114,14 @@ class User extends Authenticatable
     }
 
     // RELACIONES
-
     public function puntuacion()
     {
         return $this->hasOne(Puntuacion::class, 'user_id');
+    }
+
+    public function progreso()
+    {
+        return $this->hasOne(Progreso::class, 'user_id');
     }
 
     public function user_practicas()

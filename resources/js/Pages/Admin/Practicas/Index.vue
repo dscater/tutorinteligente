@@ -40,36 +40,36 @@ const columns = [
         title: "LINEAS DE CÓDIGO",
         data: "lineas",
     },
-    {
-        title: "ACCIONES",
-        sortable: false,
-        data: null,
-        render: function (data, type, row) {
-            let buttons = ``;
+    // {
+    //     title: "ACCIONES",
+    //     sortable: false,
+    //     data: null,
+    //     render: function (data, type, row) {
+    //         let buttons = ``;
 
-            if (
-                props_page.auth?.user.permisos == "*" ||
-                props_page.auth?.user.permisos.includes("practicas.edit")
-            ) {
-                buttons += `<button class="mx-0 rounded-0 btn btn-warning editar" data-id="${row.id}"><i class="fa fa-edit"></i></button> `;
-            }
+    //         if (
+    //             props_page.auth?.user.permisos == "*" ||
+    //             props_page.auth?.user.permisos.includes("practicas.edit")
+    //         ) {
+    //             buttons += `<button class="mx-0 rounded-0 btn btn-warning editar" data-id="${row.id}"><i class="fa fa-edit"></i></button> `;
+    //         }
 
-            if (
-                props_page.auth?.user.permisos == "*" ||
-                props_page.auth?.user.permisos.includes("practicas.destroy")
-            ) {
-                buttons += `<button class="mx-0 rounded-0 btn btn-danger eliminar"
-                 data-id="${row.id}"
-                 data-nombre="${row.seccion}|${row.pregunta}"
-                 data-url="${route(
-                     "practicas.destroy",
-                     row.id
-                 )}"><i class="fa fa-trash"></i></button>`;
-            }
+    //         if (
+    //             props_page.auth?.user.permisos == "*" ||
+    //             props_page.auth?.user.permisos.includes("practicas.destroy")
+    //         ) {
+    //             buttons += `<button class="mx-0 rounded-0 btn btn-danger eliminar"
+    //              data-id="${row.id}"
+    //              data-nombre="${row.seccion}|${row.pregunta}"
+    //              data-url="${route(
+    //                  "practicas.destroy",
+    //                  row.id
+    //              )}"><i class="fa fa-trash"></i></button>`;
+    //         }
 
-            return buttons;
-        },
-    },
+    //         return buttons;
+    //     },
+    // },
 ];
 const loading = ref(false);
 const accion_dialog = ref(0);
@@ -176,7 +176,7 @@ onBeforeUnmount(() => {
             <!-- BEGIN panel -->
             <div class="panel panel-inverse">
                 <!-- BEGIN panel-heading -->
-                <div class="panel-heading">
+                <!-- <div class="panel-heading">
                     <h4 class="panel-title btn-nuevo">
                         <button
                             v-if="
@@ -192,11 +192,11 @@ onBeforeUnmount(() => {
                             <i class="fa fa-plus"></i> Nueva Practica
                         </button>
                     </h4>
-                    <!-- <panel-toolbar
+                    <panel-toolbar
                         :mostrar_loading="loading"
                         @loading="updateDatatable"
-                    /> -->
-                </div>
+                    />
+                </div> -->
                 <!-- END panel-heading -->
                 <!-- BEGIN panel-body -->
                 <div class="panel-body">
@@ -212,7 +212,6 @@ onBeforeUnmount(() => {
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th width="5%"></th>
                             </tr>
                         </thead>
                         <div class="loading_table" v-show="loading_table">

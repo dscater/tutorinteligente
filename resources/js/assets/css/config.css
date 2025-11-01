@@ -28,6 +28,42 @@
     --bg6: #348fe2;
 }
 
+.barra {
+    position: relative;
+    border-radius: 30px;
+    display: block;
+    width: 100%;
+    height: 30px;
+    background: rgb(211, 210, 210);
+    border: solid 1px gray;
+}
+
+.progreso {
+    border-radius: 30px;
+    height: 30px;
+    background: rgb(148, 248, 66);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.txtProgreso {
+    position: absolute;
+    left: 45%;
+    background-color: rgb(96, 96, 134);
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+}
+.info {
+    position: absolute;
+    right: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(255, 255, 255);
+}
+
 .bg-linea-correcto {
     background-color: #063f19;
 }

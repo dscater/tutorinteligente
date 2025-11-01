@@ -29,11 +29,7 @@ class EstudianteController extends Controller
 
     public function listado(Request $request): JsonResponse
     {
-        $estudiantes = User::where("id", "!=", 1);
-
-        if (isset($request->tipo) && $request->tipo) {
-            $estudiantes->where("tipo", $request->tipo);
-        }
+        $estudiantes = User::where("tipo", "ESTUDIANTE");
 
         $estudiantes = $estudiantes->where("status", 1)->get();
         return response()->JSON([

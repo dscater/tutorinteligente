@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 29-10-2025 a las 15:46:11
+-- Tiempo de generación: 01-11-2025 a las 19:24:37
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -139,7 +139,8 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (13, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UNA PRÁCTICA', '{\"id\": 1, \"nivel\": \"BÁSICO\", \"codigo\": \"class{\\r\\n    i=0;\\r\\n}\", \"lineas\": \"3\", \"seccion\": \"ABSTRACCIÓN\", \"created_at\": \"2025-10-28T19:50:35.000000Z\", \"updated_at\": \"2025-10-28T19:50:35.000000Z\", \"descripcion\": \"DESCRIPCION PRACTICA\"}', NULL, 'PRÁCTICAS', '2025-10-28', '15:50:35', '2025-10-28 19:50:35', '2025-10-28 19:50:35'),
 (14, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 4, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"RESP 4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"4\", \"pregunta\": \"PREGUNTA 3\", \"created_at\": \"2025-10-29T14:55:57.000000Z\", \"updated_at\": \"2025-10-29T14:55:57.000000Z\", \"fecha_registro\": \"2025-10-29\"}', NULL, 'CUESTIONARIOS', '2025-10-29', '10:55:57', '2025-10-29 14:55:57', '2025-10-29 14:55:57'),
 (15, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 5, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"RESP 4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"3\", \"pregunta\": \"PREGUNTA 4\", \"created_at\": \"2025-10-29T14:56:10.000000Z\", \"updated_at\": \"2025-10-29T14:56:10.000000Z\", \"fecha_registro\": \"2025-10-29\"}', NULL, 'CUESTIONARIOS', '2025-10-29', '10:56:10', '2025-10-29 14:56:10', '2025-10-29 14:56:10'),
-(16, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 6, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"R4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"1\", \"pregunta\": \"PREGUNTA 5\", \"created_at\": \"2025-10-29T14:56:20.000000Z\", \"updated_at\": \"2025-10-29T14:56:20.000000Z\", \"fecha_registro\": \"2025-10-29\"}', NULL, 'CUESTIONARIOS', '2025-10-29', '10:56:20', '2025-10-29 14:56:20', '2025-10-29 14:56:20');
+(16, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN CUESTIONARIO', '{\"id\": 6, \"resp1\": \"RESP 1\", \"resp2\": \"RESP 2\", \"resp3\": \"RESP 3\", \"resp4\": \"R4\", \"seccion\": \"INTRODUCCIÓN\", \"correcta\": \"1\", \"pregunta\": \"PREGUNTA 5\", \"created_at\": \"2025-10-29T14:56:20.000000Z\", \"updated_at\": \"2025-10-29T14:56:20.000000Z\", \"fecha_registro\": \"2025-10-29\"}', NULL, 'CUESTIONARIOS', '2025-10-29', '10:56:20', '2025-10-29 14:56:20', '2025-10-29 14:56:20'),
+(17, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN ESTUDIANTE', '{\"ci\": \"2222222\", \"id\": 4, \"dir\": \"LOS PEDREGALES\", \"fono\": \"677777777\", \"tipo\": \"ESTUDIANTE\", \"acceso\": \"1\", \"ci_exp\": \"LP\", \"correo\": \"carlos@gmail.com\", \"nombre\": \"CARLOS\", \"materno\": \"GONZALES\", \"paterno\": \"RAMIRES\", \"usuario\": \"carlos@gmail.com\", \"created_at\": \"2025-11-01T17:37:35.000000Z\", \"updated_at\": \"2025-11-01T17:37:35.000000Z\", \"fecha_registro\": \"2025-11-01\"}', NULL, 'ESTUDIANTES', '2025-11-01', '13:37:35', '2025-11-01 17:37:35', '2025-11-01 17:37:35');
 
 -- --------------------------------------------------------
 
@@ -208,6 +209,14 @@ CREATE TABLE `progresos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `progresos`
+--
+
+INSERT INTO `progresos` (`id`, `user_id`, `progreso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 3, 100, '2025-11-01', '2025-11-01 18:28:16', '2025-11-01 18:28:42'),
+(2, 4, 100, '2025-11-01', '2025-11-01 18:28:16', '2025-11-01 19:17:21');
+
 -- --------------------------------------------------------
 
 --
@@ -228,7 +237,8 @@ CREATE TABLE `puntuacions` (
 --
 
 INSERT INTO `puntuacions` (`id`, `user_id`, `puntuacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 3, 440, '2025-10-29', '2025-10-29 15:29:02', '2025-10-29 15:44:58');
+(1, 3, 0, '2025-10-29', '2025-10-29 15:29:02', '2025-11-01 18:07:32'),
+(2, 4, 20, '2025-11-01', '2025-11-01 18:00:06', '2025-11-01 19:16:57');
 
 -- --------------------------------------------------------
 
@@ -264,7 +274,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `password`, `acceso`, `tipo`, `foto`, `fecha_registro`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', 'admin', '', '0', '', '', '', '', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 1, 'ADMINISTRADOR', NULL, '2025-10-06', 1, '2025-10-06 21:07:41', '2025-10-06 21:07:41'),
 (2, 'juan@gmail.com', 'JUAN', 'PERES', 'MAMANI', '123456', 'LP', 'LOS OLIVOS', 'juan@gmail.com', '6755675675', '$2y$12$or9sW4UJnFkhkPPpwrkNhO1ZH5EH3I.05wEbcvmq3hG1PJcJKccdS', 1, 'ADMINISTRADOR', '21761225258.jpg', '2025-10-23', 1, '2025-10-23 13:14:18', '2025-10-23 13:17:29'),
-(3, 'eduardo@gmail.com', 'EDUARDO', 'GONZALES', '', '1231231', 'LP', 'LOS OLIVOS #2', 'eduardo@gmail.com', '62323232', '$2y$12$jngjS3R.0KCgTHbsbN6czOvPtTy7twcp1COWmNNxKo6kZ/owKLAPe', 1, 'ESTUDIANTE', '31761226146.jpg', '2025-10-23', 1, '2025-10-23 13:29:06', '2025-10-23 13:35:51');
+(3, 'eduardo@gmail.com', 'EDUARDO', 'GONZALES', '', '1231231', 'LP', 'LOS OLIVOS #2', 'eduardo@gmail.com', '62323232', '$2y$12$jngjS3R.0KCgTHbsbN6czOvPtTy7twcp1COWmNNxKo6kZ/owKLAPe', 1, 'ESTUDIANTE', '31761226146.jpg', '2025-10-23', 1, '2025-10-23 13:29:06', '2025-10-23 13:35:51'),
+(4, 'carlos@gmail.com', 'CARLOS', 'RAMIRES', 'GONZALES', '2222222', 'LP', 'LOS PEDREGALES', 'carlos@gmail.com', '677777777', '$2y$12$qU0GCU/3wAZJMv9FippY4O2vy/NThTejHynmSAtpUWqRV1er2BQz.', 1, 'ESTUDIANTE', NULL, '2025-11-01', 1, '2025-11-01 17:37:35', '2025-11-01 17:37:35');
 
 -- --------------------------------------------------------
 
@@ -288,7 +299,9 @@ CREATE TABLE `user_practicas` (
 
 INSERT INTO `user_practicas` (`id`, `user_id`, `practica_id`, `codigo`, `correcto`, `created_at`, `updated_at`) VALUES
 (1, 3, 1, 'class{\r\n    int i = 0;\r\n}', 1, '2025-10-28 21:05:43', '2025-10-29 14:28:47'),
-(3, 3, 3, 'class{\r\n    int i=0;\r\n    int b=1;\r\n    int c = 1;\r\n}', 1, '2025-10-28 21:25:04', '2025-10-29 14:29:00');
+(3, 3, 3, 'class{\r\n    int i=0;\r\n    int b=1;\r\n    int c = 1;\r\n}', 1, '2025-10-28 21:25:04', '2025-10-29 14:29:00'),
+(4, 4, 1, 'class{\r\n    int i = 0;\r\n}', 1, '2025-11-01 18:48:44', '2025-11-01 18:48:44'),
+(5, 4, 3, 'class{\r\n    int i = 0;\r\n    int b=1;\r\n    int c=1;\r\n}', 1, '2025-11-01 19:17:21', '2025-11-01 19:17:21');
 
 --
 -- Índices para tablas volcadas
@@ -382,7 +395,7 @@ ALTER TABLE `cuestionarios`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -400,25 +413,25 @@ ALTER TABLE `practicas`
 -- AUTO_INCREMENT de la tabla `progresos`
 --
 ALTER TABLE `progresos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `puntuacions`
 --
 ALTER TABLE `puntuacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `user_practicas`
 --
 ALTER TABLE `user_practicas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

@@ -59,6 +59,8 @@ class PermisoService
             "puntuacions.show",
             "puntuacions.update",
             "puntuacions.destroy",
+            "puntuacions.getPuntuacions",
+            "puntuacions.reiniciar",
 
             "practicas.api",
             "practicas.listado",
@@ -79,6 +81,9 @@ class PermisoService
             "progresos.show",
             "progresos.update",
             "progresos.destroy",
+            "progresos.index",
+            "progresos.getProgresos",
+            "practica_estudiantes.getProgresoEstudiante",
 
             "configuracions.index",
             "configuracions.create",
@@ -90,6 +95,10 @@ class PermisoService
             "reportes.r_usuarios",
             "reportes.estudiantes",
             "reportes.r_estudiantes",
+            "reportes.puntuacion_progresos",
+            "reportes.r_puntuacion_progresos",
+            "reportes.gpuntuacion_progresos",
+            "reportes.r_gpuntuacion_progresos",
         ],
         "ESTUDIANTE" => [
             "practicas.listado",

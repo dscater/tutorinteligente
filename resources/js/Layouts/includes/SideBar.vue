@@ -539,16 +539,14 @@ const logout = () => {
                 <div
                     v-if="
                         user_logeado.permisos == '*' ||
-                        user_logeado.permisos.includes('estudiantes.index')
+                        user_logeado.permisos.includes('progresos.index')
                     "
                     class="menu-item"
                     :class="[
-                        route_current == 'estudiantes.index'
-                            ? 'active'
-                            : 'none',
+                        route_current == 'progresos.index' ? 'active' : 'none',
                     ]"
                 >
-                    <Link :href="route('estudiantes.index')" class="menu-link">
+                    <Link :href="route('progresos.index')" class="menu-link">
                         <div class="menu-icon">
                             <i class="fa fa-clipboard-list"></i>
                         </div>
@@ -558,16 +556,16 @@ const logout = () => {
                 <div
                     v-if="
                         user_logeado.permisos == '*' ||
-                        user_logeado.permisos.includes('estudiantes.index')
+                        user_logeado.permisos.includes('puntuacions.index')
                     "
                     class="menu-item"
                     :class="[
-                        route_current == 'estudiantes.index'
+                        route_current == 'puntuacions.index'
                             ? 'active'
                             : 'none',
                     ]"
                 >
-                    <Link :href="route('estudiantes.index')" class="menu-link">
+                    <Link :href="route('puntuacions.index')" class="menu-link">
                         <div class="menu-icon">
                             <i class="fa fa-list-alt"></i>
                         </div>
@@ -768,16 +766,19 @@ const logout = () => {
                 <div
                     v-if="
                         user_logeado.permisos == '*' ||
-                        user_logeado.permisos.includes('reportes.usuarios')
+                        user_logeado.permisos.includes('reportes.estudiantes')
                     "
                     class="menu-item"
                     :class="[
-                        route_current == 'reportes.usuarios'
+                        route_current == 'reportes.estudiantes'
                             ? 'active'
                             : 'none',
                     ]"
                 >
-                    <Link :href="route('reportes.usuarios')" class="menu-link">
+                    <Link
+                        :href="route('reportes.estudiantes')"
+                        class="menu-link"
+                    >
                         <div class="menu-icon">
                             <i class="fa fa-file-alt"></i>
                         </div>
@@ -787,16 +788,21 @@ const logout = () => {
                 <div
                     v-if="
                         user_logeado.permisos == '*' ||
-                        user_logeado.permisos.includes('reportes.usuarios')
+                        user_logeado.permisos.includes(
+                            'reportes.puntuacion_progresos'
+                        )
                     "
                     class="menu-item"
                     :class="[
-                        route_current == 'reportes.usuarios'
+                        route_current == 'reportes.puntuacion_progresos'
                             ? 'active'
                             : 'none',
                     ]"
                 >
-                    <Link :href="route('reportes.usuarios')" class="menu-link">
+                    <Link
+                        :href="route('reportes.puntuacion_progresos')"
+                        class="menu-link"
+                    >
                         <div class="menu-icon">
                             <i class="fa fa-file-alt"></i>
                         </div>
@@ -808,16 +814,21 @@ const logout = () => {
                 <div
                     v-if="
                         user_logeado.permisos == '*' ||
-                        user_logeado.permisos.includes('reportes.usuarios')
+                        user_logeado.permisos.includes(
+                            'reportes.gpuntuacion_progresos'
+                        )
                     "
                     class="menu-item"
                     :class="[
-                        route_current == 'reportes.usuarios'
+                        route_current == 'reportes.gpuntuacion_progresos'
                             ? 'active'
                             : 'none',
                     ]"
                 >
-                    <Link :href="route('reportes.usuarios')" class="menu-link">
+                    <Link
+                        :href="route('reportes.gpuntuacion_progresos')"
+                        class="menu-link"
+                    >
                         <div class="menu-icon">
                             <i class="fa fa-chart-column"></i>
                         </div>

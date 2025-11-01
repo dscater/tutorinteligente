@@ -11,6 +11,8 @@ use App\Http\Controllers\NivelController;
 use App\Http\Controllers\PracticaController;
 use App\Http\Controllers\PracticaEstudianteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgresoController;
+use App\Http\Controllers\PuntuacionController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\SeccionController;
 use App\Http\Controllers\UserController;
@@ -120,17 +122,33 @@ Route::middleware(['auth', 'permisoUsuario'])->prefix("admin")->group(function (
     Route::get("practica_estudiantes", [PracticaEstudianteController::class, 'index'])->name("practica_estudiantes.index");
     Route::get("practica_estudiantes/obtenerPracticaEstudiante/{practica}", [PracticaEstudianteController::class, 'obtenerPracticaEstudiante'])->name("practica_estudiantes.getPractica");
     Route::post("practica_estudiantes", [PracticaEstudianteController::class, 'store'])->name("practica_estudiantes.store");
+    Route::post("practica_estudiantes/getProgresoEstudiante", [PracticaEstudianteController::class, 'getProgresoEstudiante'])->name("practica_estudiantes.getProgresoEstudiante");
 
     // CUESTIONARIOS-ESTUDIANTES
     Route::get("cuestionario_estudiantes", [CuestionarioEstudianteController::class, 'index'])->name("cuestionario_estudiantes.index");
     Route::get("cuestionario_estudiantes/getPuntuacion/{user}", [CuestionarioEstudianteController::class, 'getPuntuacion'])->name("cuestionario_estudiantes.getPuntuacion");
     Route::post("cuestionario_estudiantes", [CuestionarioEstudianteController::class, 'store'])->name("cuestionario_estudiantes.store");
 
+    // PUNTUACIONES
+    Route::get("puntuacions", [PuntuacionController::class, 'index'])->name("puntuacions.index");
+    Route::get("puntuacions/getPuntuacions", [PuntuacionController::class, 'getPuntuacions'])->name("puntuacions.getPuntuacions");
+    Route::post("puntuacions/reiniciar", [PuntuacionController::class, 'reiniciar'])->name("puntuacions.reiniciar");
+
+    // PROGRESOS
+    Route::get("progresos", [ProgresoController::class, 'index'])->name("progresos.index");
+    Route::get("progresos/getProgresos", [ProgresoController::class, 'getProgresos'])->name("progresos.getProgresos");
+
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");
     Route::get('reportes/r_usuarios', [ReporteController::class, 'r_usuarios'])->name("reportes.r_usuarios");
 
-    Route::get('reportes/pacientes', [ReporteController::class, 'pacientes'])->name("reportes.pacientes");
-    Route::get('reportes/r_pacientes', [ReporteController::class, 'r_pacientes'])->name("reportes.r_pacientes");
+    Route::get('reportes/estudiantes', [ReporteController::class, 'estudiantes'])->name("reportes.estudiantes");
+    Route::get('reportes/r_estudiantes', [ReporteController::class, 'r_estudiantes'])->name("reportes.r_estudiantes");
+
+    Route::get('reportes/puntuacion_progresos', [ReporteController::class, 'puntuacion_progresos'])->name("reportes.puntuacion_progresos");
+    Route::get('reportes/r_puntuacion_progresos', [ReporteController::class, 'r_puntuacion_progresos'])->name("reportes.r_puntuacion_progresos");
+
+    Route::get('reportes/gpuntuacion_progresos', [ReporteController::class, 'gpuntuacion_progresos'])->name("reportes.gpuntuacion_progresos");
+    Route::get('reportes/r_gpuntuacion_progresos', [ReporteController::class, 'r_gpuntuacion_progresos'])->name("reportes.r_gpuntuacion_progresos");
 });
 require __DIR__ . '/auth.php';

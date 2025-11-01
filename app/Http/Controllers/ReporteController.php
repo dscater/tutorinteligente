@@ -29,6 +29,7 @@ class ReporteController extends Controller
     {
         $tipo =  $request->tipo;
         $usuarios = User::select("users.*")
+            ->where('tipo', '!=', 'ESTUDIANTE')
             ->where('id', '!=', 1);
 
         if ($tipo != 'todos') {
@@ -52,55 +53,19 @@ class ReporteController extends Controller
 
         return $pdf->stream('usuarios.pdf');
     }
-
-
-    public function tareas()
+    public function estudiantes()
     {
-        return Inertia::render("Admin/Reportes/Tareas");
+        return Inertia::render("Admin/Reportes/Estudiantes");
     }
-
-    public function r_tareas(Request $request)
+    public function r_estudiantes(Request $request)
     {
-        $area_id = $request->area_id;
-        $estado = $request->estado;
-        $fecha_ini = $request->fecha_ini;
-        $fecha_fin = $request->fecha_fin;
-        $tareas = [];
-        if (Auth::user()->tipo == 'OPERARIOS') {
-            $tareas = Tarea::select("tareas.*")
-                ->join("tarea_operarios", "tarea_operarios.tarea_id", "=", "tareas.id");
-            $tareas->where("tarea_operarios.user_id", Auth::user()->id);
+        $estudiante_id =  $request->estudiante_id;
+        $usuarios = User::select("users.*")
+            ->where('tipo', '=', 'ESTUDIANTE');
 
-            if ($area_id != 'todos') {
-                $tareas->where("tareas.area_id", $area_id);
-            }
+        $usuarios = $usuarios->orderBy("paterno", "ASC")->get();
 
-            if ($estado != 'todos') {
-                $tareas->where("tareas.estado", $estado);
-            }
-
-            $tareas->distinct("tareas.id");
-            $tareas->groupBy("tareas.id");
-            $tareas = $tareas->get();
-        } else {
-            $tareas = Tarea::select("tareas.*");
-
-            if ($area_id != 'todos') {
-                $tareas->where("area_id", $area_id);
-            }
-
-            if ($estado != 'todos') {
-                $tareas->where("estado", $estado);
-            }
-
-            if ($fecha_ini && $fecha_fin) {
-                $tareas->whereBetween("fecha_registro", [$fecha_ini, $fecha_fin]);
-            }
-            $tareas = $tareas->get();
-        }
-
-
-        $pdf = PDF::loadView('reportes.tareas', compact('tareas'))->setPaper('letter', 'portrait');
+        $pdf = PDF::loadView('reportes.estudiantes', compact('usuarios'))->setPaper('legal', 'landscape');
 
         // ENUMERAR LAS PÁGINAS USANDO CANVAS
         $pdf->output();
@@ -110,53 +75,82 @@ class ReporteController extends Controller
         $ancho = $canvas->get_width();
         $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
 
-        return $pdf->stream('tareas.pdf');
+        return $pdf->stream('estudiantes.pdf');
     }
 
-    public function rg_tareas(Request $request)
+    public function puntuacion_progresos()
     {
-        $estado = $request->estado;
-        $fecha_ini = $request->fecha_ini;
-        $fecha_fin = $request->fecha_fin;
+        return Inertia::render("Admin/Reportes/PuntuacionProgresos");
+    }
+    public function r_puntuacion_progresos(Request $request)
+    {
+        $estudiante_id =  $request->estudiante_id;
+        $usuarios = User::select("users.*")
+            ->where('tipo', '=', 'ESTUDIANTE');
 
-        $areas = Area::all();
-        $categories = Area::pluck("nombre")->toArray();
-        $estados = ["PENDIENTE", "INICIADO", "FINALIZADO"];
-        if ($estado != 'todos') {
-            $estados = [$estado];
+        if ($estudiante_id != 'todos') {
+            $usuarios->where("id", $estudiante_id);
         }
 
-        $data = [];
-        foreach ($estados as $key => $estado) {
-            $data[] = [
-                "name" => $estado,
-                "data" => []
-            ];
-            foreach ($areas as $area) {
-                if (Auth::user()->tipo == 'OPERARIOS') {
-                    $tareas = Tarea::select("tareas.*")
-                        ->join("tarea_operarios", "tarea_operarios.tarea_id", "=", "tareas.id");
-                    $tareas->where("tarea_operarios.user_id", Auth::user()->id);
-                    $tareas->where("tareas.area_id", $area->id);
-                    $tareas->where("tareas.estado", $estado);
-                    if ($fecha_ini && $fecha_fin) {
-                        $tareas->whereBetween("tareas.fecha_registro", [$fecha_ini, $fecha_fin]);
-                    }
-                    $tareas->distinct("tareas.id");
-                    $tareas->groupBy("tareas.id");
-                    $tareas = $tareas->count();
-                } else {
-                    $tareas = Tarea::select("tareas.*");
-                    $tareas->where("estado", $estado);
-                    $tareas->where("area_id", $area->id);
-                    if ($fecha_ini && $fecha_fin) {
-                        $tareas->whereBetween("fecha_registro", [$fecha_ini, $fecha_fin]);
-                    }
-                    $tareas = $tareas->count();
-                }
+        $usuarios = $usuarios->orderBy("paterno", "ASC")->get();
 
-                $data[$key]["data"][] = $tareas;
+        $pdf = PDF::loadView('reportes.puntuacion_progresos', compact('usuarios'))->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->stream('puntuacion_progresos.pdf');
+    }
+
+
+    public function gpuntuacion_progresos()
+    {
+        return Inertia::render("Admin/Reportes/GPuntuacionProgresos");
+    }
+    public function r_gpuntuacion_progresos(Request $request)
+    {
+        // $estudiante_id =  $request->estudiante_id;
+        $usuarios = User::select("users.*")
+            ->where('tipo', '=', 'ESTUDIANTE');
+
+        // if ($estudiante_id != 'todos') {
+        //     $usuarios->where("id", $estudiante_id);
+        // }
+
+        $usuarios = $usuarios->orderBy("paterno", "ASC")->get();
+
+        $categories = [];
+        $data = [
+            [
+                "name" => "Puntuación",
+                "data" => [],
+                "color" => "#348fe2",
+            ],
+            [
+                "name" => "Progreso %",
+                "data" => [],
+                "color" => "#53ba83",
+            ]
+        ];
+
+        foreach ($usuarios as $usuario) {
+            $categories[] = $usuario->full_name;
+            $puntaje = 0;
+            $progreso = 0;
+            if ($usuario->puntuacion) {
+                $puntaje = $usuario->puntuacion->puntuacion;
             }
+
+            if ($usuario->progreso) {
+                $progreso = $usuario->progreso->progreso;
+            }
+            $data[0]["data"][] = $puntaje;
+            $data[1]["data"][] = $progreso;
         }
 
         return response()->JSON([

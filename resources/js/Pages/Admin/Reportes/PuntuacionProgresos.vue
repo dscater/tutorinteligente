@@ -22,9 +22,19 @@ import { Head, usePage } from "@inertiajs/vue3";
 
 const { setLoading } = useApp();
 
-const cargarListas = () => {};
+const cargarListas = () => {
+    getEstudiantes();
+};
 
-const listSucursals = ref([]);
+const getEstudiantes = () => {
+    axios.get(route("estudiantes.listado")).then((response) => {
+        listEstudiantes.value = response.data.estudiantes;
+        listEstudiantes.value.unshift({
+            id: "todos",
+            full_name: "TODOS",
+        });
+    });
+};
 
 onMounted(() => {
     cargarListas();
@@ -34,7 +44,7 @@ onMounted(() => {
 });
 
 const form = ref({
-    tipo: "todos",
+    estudiante_id: "todos",
 });
 
 const generando = ref(false);
@@ -45,14 +55,11 @@ const txtBtn = computed(() => {
     return "Generar Reporte";
 });
 
-const listTipos = ref([
-    { value: "todos", label: "TODOS" },
-    { value: "ADMINISTRADOR", label: "ADMINISTRADOR" },
-]);
+const listEstudiantes = ref([]);
 
 const generarReporte = () => {
     generando.value = true;
-    const url = route("reportes.r_usuarios", form.value);
+    const url = route("reportes.r_puntuacion_progresos", form.value);
     window.open(url, "_blank");
     setTimeout(() => {
         generando.value = false;
@@ -60,15 +67,17 @@ const generarReporte = () => {
 };
 </script>
 <template>
-    <Head title="Reporte Usuarios"></Head>
+    <Head title="Reporte Puntuación, Progresos y Seguimiento"></Head>
     <!-- BEGIN breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:;">Inicio</a></li>
-        <li class="breadcrumb-item active">Reportes > Usuarios</li>
+        <li class="breadcrumb-item active">
+            Reportes > Puntuación, Progresos y Seguimiento
+        </li>
     </ol>
     <!-- END breadcrumb -->
     <!-- BEGIN page-header -->
-    <h1 class="page-header">Reportes > Usuarios</h1>
+    <h1 class="page-header">Reportes > Puntuación, Progresos y Seguimiento</h1>
     <!-- END page-header -->
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -77,27 +86,19 @@ const generarReporte = () => {
                     <form @submit.prevent="generarReporte">
                         <div class="row">
                             <div class="col-md-12">
-                                <label>Seleccionar tipo de usuario*</label>
-                                <select
-                                    :hide-details="
-                                        form.errors?.tipo ? false : true
-                                    "
-                                    :error="form.errors?.tipo ? true : false"
-                                    :error-messages="
-                                        form.errors?.tipo
-                                            ? form.errors?.tipo
-                                            : ''
-                                    "
-                                    v-model="form.tipo"
-                                    class="form-control"
+                                <label>Seleccionar estudiante*</label>
+                                <el-select
+                                    v-model="form.estudiante_id"
+                                    filterable
                                 >
-                                    <option
-                                        v-for="item in listTipos"
-                                        :value="item.value"
+                                    <el-option
+                                        v-for="item in listEstudiantes"
+                                        :KEY="item.id"
+                                        :value="item.id"
+                                        :label="item.full_name"
                                     >
-                                        {{ item.label }}
-                                    </option>
-                                </select>
+                                    </el-option>
+                                </el-select>
                             </div>
                             <div class="col-md-12 text-center mt-3">
                                 <button

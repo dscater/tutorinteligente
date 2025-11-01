@@ -31,6 +31,8 @@ class PracticaService
             "fecha_registro" => date("Y-m-d")
         ]);
 
+
+
         // registrar accion
         $this->historialAccionService->registrarAccion($this->modulo, "CREACIÓN", "REGISTRO UNA PRÁCTICA", $practica);
 

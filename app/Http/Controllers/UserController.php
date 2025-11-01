@@ -36,6 +36,7 @@ class UserController extends Controller
         if (Auth::check()) {
             $oUser = new User();
             $permisos = $oUser->permisos;
+            $tipo = Auth::user()->tipo;
             if ($permisos == '*' || (is_array($permisos) && in_array('usuarios.index', $permisos))) {
                 $array_infos[] = [
                     'label' => 'USUARIOS',
@@ -46,18 +47,6 @@ class UserController extends Controller
                 ];
             }
 
-            // if ($permisos == '*' || (is_array($permisos) && in_array('areas.index', $permisos))) {
-            //     $areas = Area::select("areas.id");
-            //     $areas = $areas->count();
-            //     $array_infos[] = [
-            //         'label' => 'ÁREAS DE PRODUCCIÓN',
-            //         'cantidad' => $areas,
-            //         'color' => 'bg-principal',
-            //         'icon' => "fa-list",
-            //         "url" => "areas.index"
-            //     ];
-            // }
-
             if ($permisos == '*' || (is_array($permisos) && in_array('usuarios.index', $permisos))) {
                 $array_infos[] = [
                     'label' => 'ESTUDIANTES',
@@ -67,9 +56,38 @@ class UserController extends Controller
                     "url" => "usuarios.index"
                 ];
             }
+
+            if ($tipo == 'ESTUDIANTE') {
+                $puntuacion = 0;
+                $user = Auth::user();
+                if ($user->puntuacion) {
+                    $puntuacion = $user->puntuacion->puntuacion;
+                }
+
+                $array_infos[] = [
+                    'label' => 'PUNTUACIÓN',
+                    'cantidad' =>  $puntuacion,
+                    'color' => 'bg-principal',
+                    'icon' => "fa-clipboard-check",
+                    "url" => "cuestionario_estudiantes.index"
+                ];
+
+
+                $progreso = 0;
+                $user = Auth::user();
+                if ($user->progreso) {
+                    $progreso = $user->progreso->progreso;
+                }
+
+                $array_infos[] = [
+                    'label' => 'PROGRESO',
+                    'cantidad' =>  $progreso . '%',
+                    'color' => 'bg-principal',
+                    'icon' => "fa-chart-line",
+                    "url" => "practica_estudiantes.index"
+                ];
+            }
         }
-
-
         return $array_infos;
     }
 }
