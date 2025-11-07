@@ -28,13 +28,13 @@ class ConceptoController extends Controller
 
     public function listado(Request $request): JsonResponse
     {
-        $conceptos = Concepto::where("id", "!=", 1);
+        $conceptos = Concepto::select("conceptos.*");
 
-        if (isset($request->tipo) && $request->tipo) {
-            $conceptos->where("tipo", $request->tipo);
+        if (isset($request->seccion) && $request->seccion) {
+            $conceptos->where("seccion", $request->seccion);
         }
 
-        $conceptos = $conceptos->where("status", 1)->get();
+        $conceptos = $conceptos->get();
         return response()->JSON([
             "conceptos" => $conceptos
         ]);

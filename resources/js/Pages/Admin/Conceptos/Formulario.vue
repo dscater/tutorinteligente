@@ -17,6 +17,7 @@ const { oConcepto, limpiarConcepto } = useConceptos();
 const accion = ref(props.accion_dialog);
 const dialog = ref(props.open_dialog);
 let form = useForm(oConcepto.value);
+const quillRef = ref(null);
 watch(
     () => props.open_dialog,
     async (newValue) => {
@@ -34,6 +35,9 @@ watch(
     () => props.accion_dialog,
     (newValue) => {
         accion.value = newValue;
+        if (accion.value == 0) {
+            quillRef.value.setHTML("");
+        }
     }
 );
 
@@ -184,6 +188,7 @@ onMounted(() => {});
                                 <label class="required">Descripción</label>
                                 <div class="editor d-block">
                                     <QuillEditor
+                                        ref="quillRef"
                                         theme="snow"
                                         toolbar="full"
                                         content-type="html"

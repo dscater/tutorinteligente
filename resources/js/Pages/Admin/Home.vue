@@ -65,7 +65,7 @@ onMounted(() => {
     <!-- END page-header -->
     <div class="row">
         <div class="col-12">
-            <h4 class="text-center text-h4">
+            <h4 class="text-center text-h4 text-white">
                 Bienvenid@ {{ props.auth.user.full_name }}
             </h4>
         </div>

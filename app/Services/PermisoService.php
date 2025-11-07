@@ -103,6 +103,10 @@ class PermisoService
         "ESTUDIANTE" => [
             "practicas.listado",
 
+            "concepto_estudiantes.index",
+
+            "conceptos.listado",
+
             "practica_estudiantes.index",
             "practica_estudiantes.getPractica",
             "practica_estudiantes.store",

@@ -28,6 +28,23 @@
     --bg6: #348fe2;
 }
 
+.ql-align-center {
+    text-align: center;
+}
+.ql-align-left {
+    text-align: left;
+}
+.ql-align-right {
+    text-align: right;
+}
+#modal-form-concepto .modal-content .modal-body {
+    max-height: 70vh;
+    overflow: auto;
+}
+.ql-align-justify {
+    text-align: justify;
+}
+
 .barra {
     position: relative;
     border-radius: 30px;

@@ -127,6 +127,7 @@ var debounceTimeout = null;
 const loading_table = ref(false);
 const datatableInitialized = ref(false);
 const updateDatatable = () => {
+    accion_dialog.value = 0;
     datatable.ajax.reload();
 };
 

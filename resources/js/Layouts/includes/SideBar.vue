@@ -593,6 +593,30 @@ const logout = () => {
                     v-if="
                         user_logeado.permisos == '*' ||
                         user_logeado.permisos.includes(
+                            'concepto_estudiantes.index'
+                        )
+                    "
+                    class="menu-item"
+                    :class="[
+                        route_current == 'concepto_estudiantes.index'
+                            ? 'active'
+                            : 'none',
+                    ]"
+                >
+                    <Link
+                        :href="route('concepto_estudiantes.index')"
+                        class="menu-link"
+                    >
+                        <div class="menu-icon">
+                            <i class="fa fa-list"></i>
+                        </div>
+                        <div class="menu-text">Conceptos</div>
+                    </Link>
+                </div>
+                <div
+                    v-if="
+                        user_logeado.permisos == '*' ||
+                        user_logeado.permisos.includes(
                             'practica_estudiantes.index'
                         )
                     "
